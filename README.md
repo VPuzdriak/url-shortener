@@ -15,7 +15,12 @@ az login
 az group create --name urlshortener-dev --location westeurope
 ```
 
-### Create app service
+### What-if infrastructure
+```bash
+az deployment group what-if --resource-group urlshortener-dev --template-file infrastructure/main.bicep
+```
+
+### Create infrastructure
 ```bash
 az deployment group create --resource-group urlshortener-dev --template-file infrastructure/main.bicep
 ```
