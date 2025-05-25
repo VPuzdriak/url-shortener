@@ -1,7 +1,4 @@
-﻿using FluentAssertions;
-using UrlShortener.Core;
-
-namespace UrlShortener.Api.Core.Tests;
+﻿namespace UrlShortener.Api.Core.Tests;
 
 public class Base62EncodingScenarios
 {
@@ -11,7 +8,7 @@ public class Base62EncodingScenarios
     [InlineData(1000, "G8")]
     [InlineData(61, "z")]
     [InlineData(987654321, "14q60P")]
-    public void Should_Encode_Number_To_Base62(int number, string expected)
+    public void Should_Encode_Number_To_Base62(long number, string expected)
     {
         number.EncodeToBase62().Should().Be(expected);
     }
