@@ -24,3 +24,14 @@ az deployment group what-if --resource-group urlshortener-dev --template-file in
 ```bash
 az deployment group create --resource-group urlshortener-dev --template-file infrastructure/main.bicep
 ```
+
+### Create user for GH Actions
+```bash
+az ad sp create-for-rbac `
+  --name "GitHub-Actions-SP" `
+  --role contributor `
+  --scopes /subscriptions/b0b3b8f4-da3c-4057-b14b-ae9b208a344b `
+  --sdk-auth
+```
+
+#### Configure a federated identity credential on an app
