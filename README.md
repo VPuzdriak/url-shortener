@@ -35,3 +35,8 @@ az ad sp create-for-rbac `
 ```
 
 #### Configure a federated identity credential on an app
+
+### Get publish profile
+```bash
+az webapp deployment list-publishing-profiles --name api-wscvzm7ks5zzm --resource-group urlshortener-dev --xml
+```
