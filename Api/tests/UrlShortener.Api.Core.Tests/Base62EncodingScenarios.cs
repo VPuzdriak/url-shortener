@@ -9,7 +9,7 @@ public class Base62EncodingScenarios
     [InlineData(1, "1")]
     [InlineData(20, "K")]
     [InlineData(987654321, "14q60P")]
-    public void Should_Encode_Number_To_Base62(int number, string expected)
+    public void Should_Encode_Number_To_Base62(long number, string expected)
     {
         number.EncodeToBase62()
             .Should()
