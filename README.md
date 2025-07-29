@@ -34,6 +34,20 @@ az ad sp create-for-rbac `
   --sdk-auth
 ```
 
+### Create custom infra_deploy role
+* Create a role based on Contributor
+* Remove Write and Delete from No Action in RoleAssignment policy
+* Add Write and Delete from Action in RoleAssignment policy
+
+### Apply to Custom Role
+```bash
+az ad sp create-for-rbac `
+  --name "GitHub-Actions-SP" `
+  --role infra_deploy `
+  --scopes /subscriptions/b0b3b8f4-da3c-4057-b14b-ae9b208a344b `
+  --sdk-auth
+```
+
 #### Configure a federated identity credential on an app
 
 ### Get publish profile
