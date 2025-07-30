@@ -15,20 +15,9 @@ public static class ServiceCollectionExtensions
             tokenProvider.AssignRange(1, 1000);
             return tokenProvider;
         });
+
         services.AddScoped<ShortUrlGenerator>();
-        services.AddSingleton<IUrlDataStore, InMemoryUrlDataStore>();
 
         return services;
-    }
-}
-
-public class InMemoryUrlDataStore : Dictionary<string, ShortenedUrl>, IUrlDataStore
-{
-    private readonly Dictionary<string, string> _store = new();
-
-    public Task AddAsync(ShortenedUrl shortened, CancellationToken cancellationToken)
-    {
-        Add(shortened.ShortUrl, shortened);
-        return Task.CompletedTask;
     }
 }

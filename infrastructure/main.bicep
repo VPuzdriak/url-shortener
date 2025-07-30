@@ -17,6 +17,16 @@ module apiService 'modules/compute/appservice.bicep' = {
     appServicePlanName: 'plan-api-${uniqueId}'
     appName: 'api-${uniqueId}'
     keyVaultName: keyVault.outputs.name
+    appSettings: [
+      {
+        name: 'DatabaseName'
+        value: 'urls'
+      }
+      {
+        name: 'ContainerName'
+        value: 'items'
+      }
+    ]
   }
 }
 
@@ -27,7 +37,7 @@ module cosmosDb 'modules/storage/cosmos-db.bicep' = {
     location: location
     kind: 'GlobalDocumentDB'
     databaseName: 'urls'
-    locationName: 'West Europe'
+    locationName: 'North Europe'
     keyVaultName: keyVault.outputs.name
   }
 }
