@@ -20,6 +20,18 @@ module apiService 'modules/compute/appservice.bicep' = {
   }
 }
 
+module cosmosDb 'modules/storage/cosmos-db.bicep' = {
+  name: 'cosmosDbDeployment'
+  params: {
+    name: 'cosmos-db-${uniqueId}'
+    location: location
+    kind: 'GlobalDocumentDB'
+    databaseName: 'urls'
+    locationName: 'West Europe'
+    keyVaultName: keyVault.outputs.name
+  }
+}
+
 module keyVaultRoleAssignment 'modules/secrets/keyvault-role-assignment.bicep' = {
   name: 'keyVaultRoleAssignmentDeployment'
   params: {
