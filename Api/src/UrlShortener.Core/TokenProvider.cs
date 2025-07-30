@@ -1,4 +1,4 @@
-﻿namespace UrlShortener.Code;
+﻿namespace UrlShortener.Core;
 
 public class TokenProvider
 {

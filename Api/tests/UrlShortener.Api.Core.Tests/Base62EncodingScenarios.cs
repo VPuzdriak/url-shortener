@@ -1,4 +1,4 @@
-using UrlShortener.Code;
+using UrlShortener.Core;
 
 namespace UrlShortener.Api.Core.Tests;
 

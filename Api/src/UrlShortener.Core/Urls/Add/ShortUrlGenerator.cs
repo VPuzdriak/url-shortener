@@ -1,4 +1,4 @@
-﻿namespace UrlShortener.Code;
+﻿namespace UrlShortener.Core.Urls.Add;
 
 public class ShortUrlGenerator
 {
