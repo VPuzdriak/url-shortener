@@ -1,4 +1,8 @@
 param location string = resourceGroup().location
+param alternativeLocation string = 'North Europe'
+
+@secure()
+param pgSqlPassword string
 
 var uniqueId = uniqueString(resourceGroup().id)
 
@@ -30,6 +34,27 @@ module apiService 'modules/compute/appservice.bicep' = {
   }
 }
 
+module tokenRangeService  'modules/compute/appservice.bicep' = {
+  name: 'tokenRangeServiceDeployment'
+  params: {
+    location: location
+    appServicePlanName: 'plan-token-range-${uniqueId}'
+    appName: 'token-range-service-${uniqueId}'
+    keyVaultName: keyVault.outputs.name
+  }
+}
+
+module pgsql 'modules/storage/postgres.bicep' = {
+  name: 'postgresDeployment'
+  params: {
+    name: 'pgsql-${uniqueId}'
+    location: alternativeLocation
+    administratorLogin: 'adminUser'
+    administratorLoginPassword: pgSqlPassword
+    keyVaultName: keyVault.outputs.name
+  }
+}
+
 module cosmosDb 'modules/storage/cosmos-db.bicep' = {
   name: 'cosmosDbDeployment'
   params: {
@@ -37,7 +62,7 @@ module cosmosDb 'modules/storage/cosmos-db.bicep' = {
     location: location
     kind: 'GlobalDocumentDB'
     databaseName: 'urls'
-    locationName: 'North Europe'
+    locationName: alternativeLocation
     keyVaultName: keyVault.outputs.name
   }
 }
@@ -46,6 +71,6 @@ module keyVaultRoleAssignment 'modules/secrets/keyvault-role-assignment.bicep' =
   name: 'keyVaultRoleAssignmentDeployment'
   params: {
     keyVaultName: keyVault.outputs.name
-    principalIds: [apiService.outputs.principalId]
+    principalIds: [apiService.outputs.principalId, tokenRangeService.outputs.principalId]
   }
 }
