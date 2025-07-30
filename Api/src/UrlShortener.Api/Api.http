@@ -1,0 +1,9 @@
+@Api_HostAddress = https://api-wscvzm7ks5zzm.azurewebsites.net
+
+POST {{Api_HostAddress}}/api/urls
+Accept: application/json
+Content-Type: application/json
+
+{
+  "LongUrl": "https://apple.com"
+}
