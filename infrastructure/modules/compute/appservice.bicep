@@ -34,4 +34,12 @@ resource webAppConfig 'Microsoft.Web/sites/config@2025-03-01' = {
   }
 }
 
+resource scmPublishingCredentials 'Microsoft.Web/sites/basicPublishingCredentialsPolicies@2025-03-01' = {
+  name: 'scm'
+  parent: webApp
+  properties: {
+    allow: true
+  }
+}
+
 output appServiceId string = webApp.id

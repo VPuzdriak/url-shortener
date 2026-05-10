@@ -32,3 +32,8 @@ az ad sp create-for-rbac --name "GitHub-Actions-SP" \
 ### Configure a federated identity credential on an app
 Configure federated credentials using entra.microsoft.com
 Select app registration -> Certificates & secrets -> Federated credential
+
+### Grab the publish profile XML
+```bash
+az webapp deployment list-publishing-profiles --name api-dghqgdyt3wxkc --resource-group urlshortener-dev --xml
+```
