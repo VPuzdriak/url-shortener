@@ -1,5 +1,5 @@
 <Solution>
   <Folder Name="/Api/">
-    <Project Path="UrlShortener.Api\UrlShortener.Api.csproj" />
+    <Project Path="Api\UrlShortener.Api\UrlShortener.Api.csproj" />
   </Folder>
 </Solution>
