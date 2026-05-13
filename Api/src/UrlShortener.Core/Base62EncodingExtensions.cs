@@ -7,7 +7,7 @@ public static class Base62EncodingExtensions
         "ABCDEFGHIJKLMNOPQRSTUVWXYZ" +
         "abcdefghijklmnopqrstuvwxyz";
 
-    extension(int number)
+    extension(long number)
     {
         public string EncodeToBase62()
         {
@@ -17,10 +17,10 @@ public static class Base62EncodingExtensions
             }
 
             var result = new Stack<char>();
-            
+
             while (number > 0)
             {
-                var index = number % 62;
+                var index = (int)(number % 62);
                 result.Push(AlphaNumeric[index]);
                 number /= 62;
             }

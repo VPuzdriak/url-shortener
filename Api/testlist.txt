@@ -1,0 +1,3 @@
+Unique tokens
+Accept multiple ranges
+TokenRange on TokenProvider can be null when getting the token
