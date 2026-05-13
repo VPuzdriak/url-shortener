@@ -1,5 +1,6 @@
 using Azure.Identity;
-using UrlShortener.Api;
+using UrlShortener.Api.Extensions;
+using UrlShortener.Core.Urls.Add;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,8 @@ if (!string.IsNullOrEmpty(keyVaultName))
 }
 
 builder.Services.AddOpenApi();
+builder.Services.AddSingleton(TimeProvider.System);
+builder.Services.AddUrlFeature();
 
 var app = builder.Build();
 
@@ -23,31 +26,17 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
+app.MapPost("/api/urls", async (
+    AddUrlHandler handler,
+    AddUrlRequest request,
+    CancellationToken cancellationToken) =>
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-    {
-        var forecast = Enumerable.Range(1, 5).Select(index =>
-                new WeatherForecast
-                (
-                    DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                    Random.Shared.Next(-20, 55),
-                    summaries[Random.Shared.Next(summaries.Length)]
-                ))
-            .ToArray();
-        return forecast;
-    })
-    .WithName("GetWeatherForecast");
+    var requestWithUser = request with { CreatedBy = "vpuzdriak@vpuzdriak.com" };
+    var result = await handler.HandleAsync(requestWithUser, cancellationToken);
+    return result.Match(
+        response => Results.Created($"/api/urls/{response.ShortUrl}", response),
+        Results.BadRequest
+    );
+});
 
 app.Run();
-
-namespace UrlShortener.Api
-{
-    record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-    {
-        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-    }
-}
