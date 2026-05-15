@@ -19,14 +19,12 @@ public static class ServiceCollectionExtensions
             });
             services.AddScoped<ShortUrlGenerator>();
 
-            services.AddScoped<IUrlDataStore, InMemoryUrlDataStore>();
-            
             return services;
         }
     }
 }
 
-public sealed class InMemoryUrlDataStore : Dictionary<string, ShortenedUrl>, IUrlDataStore
+internal sealed class InMemoryUrlDataStore : Dictionary<string, ShortenedUrl>, IUrlDataStore
 {
     public Task AddAsync(ShortenedUrl shortened, CancellationToken cancellationToken)
     {
