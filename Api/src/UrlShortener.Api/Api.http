@@ -1,0 +1,9 @@
+@Api_HostAddress = https://api-dghqgdyt3wxkc.azurewebsites.net
+
+POST {{Api_HostAddress}}/api/urls
+Accept: application/json
+Content-Type: application/json
+
+{
+  "longUrl": "https://portal.azure.com"
+}
