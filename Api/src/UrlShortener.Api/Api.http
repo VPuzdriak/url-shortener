@@ -5,5 +5,5 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "longUrl": "https://google.com"
+  "longUrl": "https://portal.azure.com"
 }
