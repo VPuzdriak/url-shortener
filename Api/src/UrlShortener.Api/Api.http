@@ -5,5 +5,5 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "LongUrl": "https://google.com"
+  "longUrl": "https://google.com"
 }

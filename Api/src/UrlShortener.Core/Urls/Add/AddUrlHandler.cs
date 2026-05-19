@@ -13,10 +13,10 @@ public sealed class AddUrlHandler(
         }
 
         var shortUrl = shortUrlGenerator.GenerateUniqueUrl();
-        var shortened = new ShortenedUrl(request.LogUrl, shortUrl, request.CreatedBy, timeProvider.GetUtcNow());
+        var shortened = new ShortenedUrl(request.LongUrl, shortUrl, request.CreatedBy, timeProvider.GetUtcNow());
 
         await urlDataStore.AddAsync(shortened, cancellationToken);
 
-        return new AddUrlResponse(request.LogUrl, shortUrl);
+        return new AddUrlResponse(request.LongUrl, shortUrl);
     }
 }
