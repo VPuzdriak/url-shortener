@@ -1,6 +1,9 @@
-@Api_HostAddress = http://localhost:5030
+@Api_HostAddress = https://api-dghqgdyt3wxkc.azurewebsites.net
 
-GET {{Api_HostAddress}}/weatherforecast/
+POST {{Api_HostAddress}}/api/urls
 Accept: application/json
+Content-Type: application/json
 
-###
+{
+  "LongUrl": "https://google.com"
+}
