@@ -14,7 +14,7 @@ public static class ServiceCollectionExtensions
             services.AddSingleton(_ =>
             {
                 var tokenProvider = new TokenProvider();
-                tokenProvider.AssignRange(0, 1000);
+                tokenProvider.AssignRange(0, 1_000);
                 return tokenProvider;
             });
             services.AddScoped<ShortUrlGenerator>();

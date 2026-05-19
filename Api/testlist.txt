@@ -1,3 +1,5 @@
 Unique tokens
+    - Generating/assigning ranges
 Accept multiple ranges
+    - Controlling the size of the range
 TokenRange on TokenProvider can be null when getting the token
