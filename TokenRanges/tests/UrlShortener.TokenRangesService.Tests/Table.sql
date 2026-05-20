@@ -1,4 +1,4 @@
-CREATE TABLE "TokenRanges"
+CREATE TABLE IF NOT EXISTS "TokenRanges"
 (
     "Id"                SERIAL PRIMARY KEY,
     "MachineIdentifier" VARCHAR(255) NOT NULL,

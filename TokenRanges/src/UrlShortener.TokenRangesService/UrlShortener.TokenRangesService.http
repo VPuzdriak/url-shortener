@@ -1,6 +1,0 @@
-@UrlShortener.TokenRangesService_HostAddress = http://localhost:5022
-
-GET {{UrlShortener.TokenRangesService_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

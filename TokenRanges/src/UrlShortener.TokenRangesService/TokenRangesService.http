@@ -1,0 +1,10 @@
+@TokenRangesService_HostAddress = https://token-ranges-service-dghqgdyt3wxkc.azurewebsites.net
+
+POST {{TokenRangesService_HostAddress}}/assign
+Accept: application/json
+Content-Type: application/json
+
+{
+  "Key": "AB1235"
+}
+###
