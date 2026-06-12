@@ -27,6 +27,10 @@ module apiService 'modules/compute/appservice.bicep' = {
         name: 'ContainerName'
         value: 'items'
       }
+      {
+        name: 'TokenRangeService__Endpoint'
+        value: tokenRangesService.outputs.url
+      }
     ]
     location: location
   }
