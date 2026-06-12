@@ -12,7 +12,7 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2025-03-01' = {
     reserved: true
   }
   sku: {
-    name: 'F1'
+    name: 'B1'
   }
 }
 
