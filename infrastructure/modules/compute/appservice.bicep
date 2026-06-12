@@ -58,3 +58,4 @@ resource scmPublishingCredentials 'Microsoft.Web/sites/basicPublishingCredential
 
 output appServiceId string = webApp.id
 output principalId string = webApp.identity.principalId
+output url string = 'https://${webApp.properties.defaultHostName}'

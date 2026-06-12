@@ -11,12 +11,7 @@ public static class ServiceCollectionExtensions
         public IServiceCollection AddUrlFeature()
         {
             services.AddScoped<AddUrlHandler>();
-            services.AddSingleton(_ =>
-            {
-                var tokenProvider = new TokenProvider();
-                tokenProvider.AssignRange(1, 1_000);
-                return tokenProvider;
-            });
+            services.AddSingleton<TokenProvider>();
             services.AddScoped<ShortUrlGenerator>();
 
             return services;
