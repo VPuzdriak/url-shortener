@@ -40,4 +40,5 @@ Select app registration -> Certificates & secrets -> Federated credential
 ```bash
 az webapp deployment list-publishing-profiles --name api-dghqgdyt3wxkc --resource-group urlshortener-dev --xml
 az webapp deployment list-publishing-profiles --name token-ranges-service-dghqgdyt3wxkc --resource-group urlshortener-dev --xml
+az webapp deployment list-publishing-profiles --name redirect-api-dghqgdyt3wxkc --resource-group urlshortener-dev --xml
 ```
