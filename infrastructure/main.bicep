@@ -20,7 +20,6 @@ module entraApp 'modules/identity/entra-app.bicep' = {
   }
 }
 
-
 module apiService 'modules/compute/appservice.bicep' = {
   name: 'apiDeployment'
   params: {
@@ -71,6 +70,26 @@ module tokenRangesService 'modules/compute/appservice.bicep' = {
   }
 }
 
+module redirectApiService 'modules/compute/appservice.bicep' = {
+  name: 'redirectApiServiceDeployment'
+  params: {
+    appName: 'redirect-api-${uniqueId}'
+    appServicePlanName: 'plan-redirect-${uniqueId}'
+    keyVaultName: keyVaultName
+    appSettings: [
+      {
+        name: 'DatabaseName'
+        value: 'urls'
+      }
+      {
+        name: 'ContainerName'
+        value: 'items'
+      }
+    ]
+    location: location
+  }
+}
+
 module postgres 'modules/storage/postgres.bicep' = {
   name: 'postgresDeployment'
   params: {
@@ -101,6 +120,7 @@ module keyVaultRoleAssingment 'modules/secrets/keyvault-role-assignment.bicep' =
     pricipalIds: [
       apiService.outputs.principalId
       tokenRangesService.outputs.principalId
+      redirectApiService.outputs.principalId
     ]
   }
 }
