@@ -1,13 +1,20 @@
 using System.Net;
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using FluentAssertions;
 using UrlShortener.Core.Urls.Add;
 
 namespace UrlShortener.Tests;
 
-public sealed class AddUrlFeature(ApiFixture fixture) : IClassFixture<ApiFixture>
+public sealed class AddUrlFeature : IClassFixture<ApiFixture>
 {
-    private readonly HttpClient _client = fixture.CreateClient();
+    private readonly HttpClient _client;
+
+    public AddUrlFeature(ApiFixture fixture)
+    {
+        _client = fixture.CreateClient();
+        _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("TestScheme");
+    }
 
     [Fact]
     public async Task Given_Long_Url_Should_Return_Short_Url()

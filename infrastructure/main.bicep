@@ -13,6 +13,14 @@ module keyVault 'modules/secrets/keyvault.bicep' = {
   }
 }
 
+module entraApp 'modules/identity/entra-app.bicep' = {
+  name: 'entraAppWeb'
+  params: {
+    applicationName: 'web-${uniqueId}'
+  }
+}
+
+
 module apiService 'modules/compute/appservice.bicep' = {
   name: 'apiDeployment'
   params: {
@@ -31,6 +39,22 @@ module apiService 'modules/compute/appservice.bicep' = {
       {
         name: 'TokenRangeService__Endpoint'
         value: tokenRangesService.outputs.url
+      }
+      {
+        name: 'AzureAd__Instance'
+        value: environment().authentication.loginEndpoint
+      }
+      {
+        name: 'AzureAd__TenantId'
+        value: tenant().tenantId
+      }
+      {
+        name: 'AzureAd__ClientId'
+        value: entraApp.outputs.applicationId
+      }
+      {
+        name: 'AzureAd__Scopes'
+        value: 'URLs.Read'
       }
     ]
     location: location
@@ -78,12 +102,5 @@ module keyVaultRoleAssingment 'modules/secrets/keyvault-role-assignment.bicep' =
       apiService.outputs.principalId
       tokenRangesService.outputs.principalId
     ]
-  }
-}
-
-module entraApp 'modules/identity/entra-app.bicep' = {
-  name: 'entraAppWeb'
-  params: {
-    applicationName: 'web-${uniqueId}'
   }
 }
