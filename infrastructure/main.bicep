@@ -113,6 +113,15 @@ module cosmosDb 'modules/storage/cosmos-db.bicep' = {
   }
 }
 
+module redisCache 'modules/storage/redis-cache.bicep' = {
+  name: 'redisCacheDeployment'
+  params: {
+    name: 'redis-cache-${uniqueId}'
+    location: location
+    keyVaultName: keyVaultName
+  }
+}
+
 module keyVaultRoleAssingment 'modules/secrets/keyvault-role-assignment.bicep' = {
   name: 'keyVaultRoleAssignmentDeployment'
   params: {
