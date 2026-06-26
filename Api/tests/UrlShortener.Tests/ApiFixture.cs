@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
 using UrlShortener.Api;
 using UrlShortener.Core.Urls.Add;
-using UrlShortener.Tests.Extensions;
+using UrlShortener.Libraries.Testing.Extensions;
 using UrlShortener.Tests.TestDoubles;
 
 namespace UrlShortener.Tests;

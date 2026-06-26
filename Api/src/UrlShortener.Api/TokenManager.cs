@@ -1,5 +1,6 @@
-using UrlShortener.Api;
 using UrlShortener.Core;
+
+namespace UrlShortener.Api;
 
 public sealed class TokenManager : IHostedService
 {
