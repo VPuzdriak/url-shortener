@@ -1,3 +1,4 @@
+using UrlShortener.Api;
 using UrlShortener.Core;
 
 namespace UrlShortener.Tests.TestDoubles;

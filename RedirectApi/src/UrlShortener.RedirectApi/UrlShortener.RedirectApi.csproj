@@ -4,6 +4,15 @@
         <TargetFramework>net10.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
+        <UserSecretsId>29c66323-6049-4277-ab8d-0a7b2cfadf9d</UserSecretsId>
     </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Azure.Extensions.AspNetCore.Configuration.Secrets" Version="1.5.1"/>
+        <PackageReference Include="Azure.Identity" Version="1.21.0"/>
+        <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.61.0"/>
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.4"/>
+        <PackageReference Include="StackExchange.Redis" Version="3.0.7"/>
+    </ItemGroup>
 
 </Project>
