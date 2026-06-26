@@ -5,7 +5,8 @@ using UrlShortener.RedirectApi.Tests.TestDoubles;
 
 namespace UrlShortener.RedirectApi.Tests;
 
-public sealed class RedirectScenarios(ApiFixture fixture) : IClassFixture<ApiFixture>
+[Collection("Api collection")]
+public sealed class RedirectScenarios(ApiFixture fixture)
 {
     private readonly HttpClient _client = fixture.CreateClient(new WebApplicationFactoryClientOptions
     {

@@ -1,8 +1,22 @@
+using Azure.Identity;
 using UrlShortener.RedirectApi.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddUrlReader("", "", "");
+var keyVaultName = builder.Configuration["KeyVaultName"];
+if (!string.IsNullOrEmpty(keyVaultName))
+{
+    builder.Configuration.AddAzureKeyVault(
+        new Uri($"https://{keyVaultName}.vault.azure.net/"),
+        new DefaultAzureCredential());
+}
+
+builder.Services.AddUrlReader(
+    cosmosDbConnectionString: builder.Configuration["CosmosDb:ConnectionString"]!,
+    databaseName: builder.Configuration["DatabaseName"]!,
+    containerName: builder.Configuration["ContainerName"]!,
+    redisConnectionString: builder.Configuration["Redis:ConnectionString"]!
+);
 
 var app = builder.Build();
 
